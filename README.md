@@ -2,7 +2,7 @@
 
 ## Adding
 
-    git submodule add git@github.com:hap-build/Linux scripts/linux
+    git submodule add https://github.com/hap-build/linux scripts/linux
 
 ## Hap Config
 
