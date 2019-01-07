@@ -2,12 +2,18 @@
 set -eu
 export DEBIAN_FRONTEND=noninteractive
 
-echo "Installing packages"
+if [ -f /etc/ntp.conf ]; then
+	echo "NTP installed"
+	date
+	exit 0
+fi
+
+echo "Installing NTP packages"
 apt-get -y -qq update
-apt-get -y -q install ntp
+apt-get -y -q install ntp ntpstat
 
 echo "Updating NTP to pool.ntp.org"
-cat > /etc/ntp.conf <<"EOF"
+cat >/etc/ntp.conf <<"EOF"
 server 0.pool.ntp.org
 server 1.pool.ntp.org
 server 2.pool.ntp.org
